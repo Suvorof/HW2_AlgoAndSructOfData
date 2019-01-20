@@ -40,9 +40,27 @@ namespace Task3
             // n = 20; F(20) = F(10) + F(19) = 18;
 
             // Ответ: число программ равно 18-ти.
+
+            int res = Task3(3, 20, 1, 2);
+            Console.WriteLine($"\nres = {res}");
+            Console.ReadKey();
         }
 
+        static int Task3 (int start, int end, int plus, int mult)
+        {
+            int[] a = new int[100];
+            a[start] = 1;
+            for(int n = start + 1; n <= end; n++)
+            {
+                a[n] = (n % mult == 0) ? a[n / mult] + a[n - plus] : a[n - plus]; 
+            }
 
+            for(int n = 0; n <= end; n++)
+            {
+                Console.Write($"{a[n]} ");
+            }
+            return a[end];
+        }
 
     }
 }
